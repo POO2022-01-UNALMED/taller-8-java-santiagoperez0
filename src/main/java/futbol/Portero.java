@@ -1,26 +1,40 @@
 package futbol;
 
-public class Jugador extends Futbolista {
-	public short golesMarcados;
-	public byte dorsal;
+public class Portero extends Futbolista{
+    public short golesRecibidos;
+    public byte dorsal;
+	public Portero(String nombre, int edad, short golesRecibidos, byte dorsal) {
+		super(nombre, edad, "Portero");
+		this.golesRecibidos = golesRecibidos;
+		this.dorsal = dorsal;
+	}
+    public boolean jugarConLasManos() {
+    	return true;
+    }
+    public String toString() {
+    	return "El futbolista "+getNombre()+" tiene "+getEdad()+", y juega de "+getPosicion()+" con el dorsal "+dorsal+". Le han marcado "+golesRecibidos;
+    }
 
-	public Jugador(String nombre, int edad, String posicion, short goles, byte dorsal) {
-		super(nombre,edad,posicion);
-		this.golesMarcados=goles;
-		this.dorsal=dorsal;
+    public short getGolesRecibidos() {
+		return golesRecibidos;
 	}
-	public Jugador() {
-		super();
-		this.golesMarcados = 289;
-		this.dorsal = 7;
+	public void setGolesRecibidos(short golesRecibidos) {
+		this.golesRecibidos = golesRecibidos;
 	}
-	public int compareTo(Object f) {
-		return this.getEdad()-((Futbolista)f).getEdad();
+	public byte getDorsal() {
+		return dorsal;
 	}
-	public boolean jugarConLasManos() {
-		return false;
+	public void setDorsal(byte dorsal) {
+		this.dorsal = dorsal;
 	}
-	public String toString() {
-		return "El futbolista "+getNombre()+" tiene "+getEdad()+", y juega de "+getPosicion()+" con el dorsal "+dorsal+". Ha marcado "+golesMarcados;
-	}
+	@Override
+	public int compareTo(Object j1) {
+		Portero j = (Portero) j1;
+    	if (this.golesRecibidos>=j.golesRecibidos) {
+    		return(this.golesRecibidos-j.golesRecibidos);
+    	}
+    	else {
+    		return(j.golesRecibidos-this.golesRecibidos);
+    	}
+    }
 }
